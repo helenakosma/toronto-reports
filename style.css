@@ -159,13 +159,14 @@ a:hover {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    height: 90vh;
+    height: 70vh;
+    margin-top: 100px;
 }
 
-.report-header {
-    color: white;
+.report_header {
     text-align: center;
-    margin-bottom: 2rem;
+    color: white;
+    font-size: large;
 }
 
 .report-content {
@@ -175,6 +176,7 @@ a:hover {
     align-items: flex-start;
     width: 100%;
     max-width: 1200px;
+    margin-top: 60px;
 }
 
 .map_img img {
@@ -217,17 +219,19 @@ form button {
     align-items: center;
     padding: 2rem;
     height: 90vh;
+    margin-top: 250px;
 }
 
 .report-header {
     color: white;
     text-align: center;
+    font-size: x-large;
     margin-bottom: 2rem;
 }
 
 .report-content {
     display: flex;
-    gap: 5rem;
+    gap: 10rem;
     justify-content: center;
     align-items: flex-start;
     width: 100%;
@@ -235,8 +239,8 @@ form button {
 }
 
 .map_img img {
-    height: 400px;
-    width: 400px;
+    height: 600px;
+    width: 800px;
     object-fit: cover;
 }
 
@@ -250,4 +254,72 @@ form button {
     margin-bottom: 1rem;
     font-weight: 400;
     color: rgb(176, 194, 211);
+}
+
+/* SUPPORT SECTION */
+#support {
+    background-color: #000000;
+    padding: 2rem;
+    color: #ffffff;
+}
+
+.support-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.support-header h2 {
+    font-size: 2rem;
+    color: #a1bfff;
+}
+
+.support-header p {
+    font-size: 1.2rem;
+    color: #f8f8f8;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.feedback-form label {
+    font-size: 1rem;
+    color: #ffe09c;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #dee1ff;
+    border-radius: 5px;
+}
+
+.feedback-form input[type="text"],
+.feedback-form input[type="email"] {
+    width: 100%;
+}
+
+.feedback-form textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+.submit-btn {
+    padding: 1rem;
+    background-color: #ffe08a;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #47558d;
 }
