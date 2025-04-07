@@ -4,7 +4,6 @@
 }
 
 body {
-    font-family: "Poppins", sans-serif;
     background-color: black;
 
 }
@@ -59,7 +58,7 @@ nav {
 }
 
 .nav-links {
-    gap: 2rem;
+    gap: 5rem;
     list-style: none;
     font-size: 1.5rem;
 }
@@ -91,3 +90,88 @@ a:hover {
     width: 50px;
     margin: auto 0;
 }
+
+
+/* ABOUT */
+
+#about {
+    display: flex;
+    justify-content: center;
+    gap: 7rem;
+    height: 60vh;
+}
+
+.cypress_img {
+    display: flex;
+    height: 400px;
+    width: 400px;
+    margin: auto 0;
+}
+
+.about__text {
+    align-self: center;
+    text-align: center;
+    color: white;
+    font-size: large;
+}
+
+.about__text p {
+    font-weight: 400;
+}
+
+.about__text__p1 {
+    text-align: center;
+    color: rgb(255, 234, 114);
+    font-size: xx-large;
+}
+
+.about__text__p2 {
+    font-size: 1.75 rem;
+    color: rgb(176, 194, 211);
+}
+
+
+/* REPORT */
+
+#report {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    height: 70vh;
+}
+
+.header__text {
+    text-align: center;
+    color: white;
+    font-size: large;
+}
+
+.map_img {
+    display: flex;
+    height: 400px;
+    width: 400px;
+    margin: auto 0;
+}
+
+.about__text {
+    align-self: center;
+    text-align: center;
+    color: white;
+    font-size: large;
+}
+
+.about__text p {
+    font-weight: 400;
+}
+
+.about__text__p1 {
+    text-align: center;
+    color: rgb(255, 234, 114);
+    font-size: xx-large;
+}
+
+.about__text__p2 {
+    font-size: 1.75 rem;
+    color: rgb(176, 194, 211);
+}
+
