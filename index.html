@@ -27,8 +27,11 @@
             <p class="about__text__p1">Welcome to Cypress.</p>
             <p class="about__text__p2">Report to the City of Toronto here!</p>
             <div class="report-btn-container">
-                <button id="getStartedBtn">Get Started</button>
-              </div>              
+                <a href="#report" id="getStartedBtn">
+                  <button>Get Started</button>
+                </a>
+              </div>
+                           
         </div> 
     </section>
     <section id="report">
@@ -64,6 +67,24 @@
           <li><a href="/edit-profile">Edit Profile</a></li>
         </ul>
     </section>
+    <section id="support">
+        <div class="support-header">
+            <h2>Got Feedback?</h2>
+            <p>If you have any suggestions or feedback about the website, let us know!</p>
+        </div>
+        <form class="feedback-form">
+            <label for="name">Your Name (optional):</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+            
+            <label for="email">Your Email (optional):</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            
+            <label for="feedback">Your Feedback:</label>
+            <input type="email" id="email" name="email" placeholder="Write your feedback here">
+            
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+    </section>    
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/cypress@12.0.0/dist/cypress.min.js"></script> 
     <h1></h1>
