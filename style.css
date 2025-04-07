@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: black;
+
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+p {
+    color: rgb(85,85,85);
+}
+
+/* DESKTOP NAV */
+
+nav, 
+.nav-links {
+    display: flex;
+}
+
+nav {
+    justify-content: space-around;
+    align-items: center;
+    height: 17vh;
+}
+
+.nav-links {
+    gap: 2rem;
+    list-style: none;
+    font-size: 1.5rem;
+}
+ 
+a {
+    color: white;
+    text-decoration: none;
+    text-decoration-color: white;
+}
+
+a:hover {
+    color: rgb(184, 224, 242);
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+    text-decoration-color: rgb(181,181,181);
+}
+
+.logo {
+    font-size: 2rem;
+    color: white;
+}
+
+.logo:hover {
+    cursor: default;
+}

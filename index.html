@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cypress
-    </title>
+    <title>Cypress</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +11,7 @@
         <div class="logo">Cypress</div>
         <div>
             <ul class="nav-links">
-                <li><a href="#about">Report</a></li>
+                <li><a href="#report">Report</a></li>
                 <li><a href="#profile">Profile</a></li>
                 <li><a href="#support">Support</a></li>
             </ul>
@@ -29,13 +28,25 @@
             </div>
             <p class="about__text__p2">Report to the City of Toronto here!</p>
             <div class="report-btn-container">
-                <nav class="report-btn-color-2" onclick="window.open('./assets/resume-example.pdf')">
-                    Download CV
-                </nav>
+            <li><a href="#report">Report</a></li>
             </div>
         </div> 
     </section>
-    <p>Welcome to the Cypress test page!</p>
+    <section id="report">
+        <div class="about__text">
+            <h1>Report a Problem!</h1>
+            <p class="about__text__p2">Click a location on the map to get started.</p>
+            /* Add your map here */
+        </div> 
+    </section>
+    <section id="profile">
+        <h2>User Profile</h2>
+        <p>Please choose an option:</p>
+        <ul>
+          <li><a href="/edit-profile">Edit Profile</a></li>
+          <li><a href="/reports">View Reports</a></li>
+        </ul>
+    </section>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/cypress@12.0.0/dist/cypress.min.js"></script> 
     <h1></h1>
