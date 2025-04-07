@@ -27,28 +27,41 @@
             <p class="about__text__p1">Welcome to Cypress.</p>
             <p class="about__text__p2">Report to the City of Toronto here!</p>
             <div class="report-btn-container">
-            <li><a href="#report">Get Started</a></li>
-            </div>
+                <button id="getStartedBtn">Get Started</button>
+              </div>              
         </div> 
     </section>
     <section id="report">
-        <div class="header__text">
-            <h1>Report a Problem!</h1>
+        <div class="report-header">
+            <h1>Report a Problem</h1>
         </div>
-        <div class="about__text">
+        <div class="report-content">
             <div class="map_img">
                 <img src="./map-placeholder.png" alt="Map Placeholder">
             </div>
-            <p class="about__text__p2">Click a location on the map to get started.</p>
-            /* Add your map here */
-        </div> 
+            <div class="report-text">
+                <p>Click a location on the map to get started.</p>
+    
+                <!-- Your form goes here -->
+                <form>
+                    <label for="issue">Issue:</label><br>
+                    <input type="text" id="issue" name="issue" placeholder="Describe the problem"><br><br>
+    
+                    <label for="location">Location:</label><br>
+                    <input type="text" id="location" name="location" placeholder="Enter location"><br><br>
+    
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
     </section>
+    
     <section id="profile">
-        <h2>User Profile</h2>
-        <p>Please choose an option:</p>
+        <div class="report-header">
+            <h1>User Profile</h1>
+        </div>
         <ul>
           <li><a href="/edit-profile">Edit Profile</a></li>
-          <li><a href="/reports">View Reports</a></li>
         </ul>
     </section>
     <script src="script.js"></script>
