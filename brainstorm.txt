@@ -1,0 +1,192 @@
+from folium import Map, Element
+
+toronto_bounds = [[43.5810, -79.6393], [43.8555, -79.1169]]
+
+m = folium.Map(
+    location=[43.7, -79.4],
+    zoom_start=12,
+    max_bounds=True
+)
+
+# Force zoom limits using Leaflet JS injection
+js = """
+<script>
+    var map = this;
+    var bounds = L.latLngBounds(
+        [43.5810, -79.6393],  // SW corner
+        [43.8555, -79.1169]   // NE corner
+    );
+    map.setMaxBounds(bounds);
+    map.on('zoomend', function() {
+        var minZoom = map.getBoundsZoom(bounds, true);
+        if (map.getZoom() < minZoom) {
+            map.setZoom(minZoom);
+        }
+    });
+</script>
+"""
+
+m.get_root().html.add_child(Element(js))
+m.fit_bounds(toronto_bounds)
+m
+
+file = gpd.read_file('Bicycle_Thefts_Open_Data_5599094214187454419.zip')
+file['geometry'] = file['geometry'].simplify(0.001, preserve_topology=True)
+sample = file.sample(500)
+
+# Create the map with min_zoom and max_zoom constraints
+m = sample.explore(
+    column="EVENT_UNIQ",
+    location=[43.7, -79.4],    # Toronto center
+    zoom_start=12,             # Initial zoom level
+    min_zoom=12,               # Prevent zooming out beyond this level
+    max_zoom=18,               # Optional: max zoom-in level
+)
+
+# Restrict the map view to specific bounds
+m.fit_bounds([[43.5, -79.6], [43.8, -79.2]])
+m.options['maxBounds'] = [[43.58, -79.65], [43.82, -79.15]]
+
+m
+
+import folium
+
+# Create a blank map centered on Toronto
+m = folium.Map(
+    location=[43.7, -79.4],  # Toronto center
+    zoom_start=12,           # Initial zoom level
+    min_zoom=12,             # Prevent zooming out
+    max_zoom=18,             # Optional: Prevent excessive zooming in
+    control_scale=True       # Shows scale bar
+)
+
+# Restrict panning to a bounding box
+m.fit_bounds([[43.5, -79.6], [43.8, -79.2]])
+m.options['maxBounds'] = [[43.58, -79.65], [43.82, -79.15]]
+
+m
+
+# Add a click event to place markers
+folium.LatLngPopup().add_to(m)  # Click to add a marker with coordinates
+
+# Restrict panning
+m.fit_bounds([[43.5, -79.6], [43.8, -79.2]])
+m.options['maxBounds'] = [[43.58, -79.65], [43.82, -79.15]]
+
+m  # Display the map
+
+
+import folium
+from folium.plugins import Draw
+
+# Create a blank map
+m = folium.Map(
+    location=[43.7, -79.4],
+    zoom_start=12,
+    min_zoom=12,
+    max_zoom=18,
+)
+
+# Add a custom icon (e.g., bike theft marker)
+bike_icon = folium.Icon(
+    icon="bicycle",           # FontAwesome icon (or use custom image)
+    prefix="fa",              # Requires FontAwesome CSS
+    color="red"
+)
+
+# Enable drawing tools (users can add markers)
+Draw(
+    export=True,              # Allows saving marker data
+    draw_options={
+        "marker": {"icon": bike_icon},  # Use custom icon
+        "circle": False,      # Disable drawing circles
+        "polygon": False,     # Disable drawing polygons
+    }
+).add_to(m)
+
+# Restrict panning
+m.fit_bounds([[43.5, -79.6], [43.8, -79.2]])
+m.options['maxBounds'] = [[43.58, -79.65], [43.82, -79.15]]
+
+m  # Display the map
+
+Draw(
+    export=True,
+    filename='my_markers.geojson',  # Optional: save markers to file
+    position='topleft',
+    draw_options={
+        'marker': True,  # Enable marker drawing
+        'circle': False,  # Disable other drawing tools
+        'polygon': False,
+        'polyline': False,
+        'rectangle': False
+    }
+).add_to(m)
+
+m
+
+# 2. Add CN Tower marker (example)
+folium.Marker(
+    [43.6426, -79.3871],
+    popup="CN Tower",
+    icon=folium.Icon(color='red')
+).add_to(m)
+
+# 3. Simple click-to-add-marker functionality
+m.add_child(folium.ClickForMarker(
+    "<b>New Point</b><br>Double-click to edit",
+    icon=folium.Icon(color='blue')
+))
+
+// Code for universal markers
+m.get_root().html.add_child(folium.Element("""
+<!-- Add Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+    // Your Firebase configuration
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+        projectId: "YOUR_PROJECT",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    
+    // Reference to markers in database
+    const markersRef = database.ref('markers');
+    
+    // Add new marker to database
+    function addMarkerToFirebase(lat, lng, popup) {
+        const newMarkerRef = markersRef.push();
+        newMarkerRef.set({
+            lat: lat,
+            lng: lng,
+            popup: popup || 'No description',
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+        });
+    }
+    
+    // Listen for new markers
+    markersRef.on('child_added', (snapshot) => {
+        const marker = snapshot.val();
+        L.marker([marker.lat, marker.lng])
+            .bindPopup(marker.popup)
+            .addTo(map);
+    });
+    
+    // Handle marker creation
+    map.on('click', function(e) {
+        const popup = prompt("Enter description for this marker:");
+        addMarkerToFirebase(e.latlng.lat, e.latlng.lng, popup);
+    });
+</script>
+"""))
+m
