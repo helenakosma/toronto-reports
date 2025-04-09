@@ -1,185 +1,67 @@
-# Restrict the map view to specific bounds
-m.fit_bounds([[43.5, -79.6], [43.8, -79.2]])
-m.options['maxBounds'] = [[43.58, -79.65], [43.82, -79.15]]
+click_js = """
+function(e) {
+    var marker = L.marker(e.latlng, {
+        draggable: true,
+        icon: L.AwesomeMarkers.icon({
+            markerColor: 'blue',
+            iconColor: 'white',
+            prefix: 'fa',
+            icon: 'map-marker'
+        })
+    }).addTo(map);
+    
+    marker.bindPopup(`
+        <b>New Report Location</b><br>
+        Latitude: ${e.latlng.lat.toFixed(6)}<br>
+        Longitude: ${e.latlng.lng.toFixed(6)}<br>
+        <button onclick="window.parent.postMessage({
+            type: 'locationSelected',
+            lat: ${e.latlng.lat},
+            lng: ${e.latlng.lng}
+        }, '*')">Use This Location</button>
+    `).openPopup();
+    
+    marker.on('dragend', function() {
+        var newPos = marker.getLatLng();
+        marker.getPopup().setContent(`
+            <b>New Report Location</b><br>
+            Latitude: ${newPos.lat.toFixed(6)}<br>
+            Longitude: ${newPos.lng.toFixed(6)}<br>
+            <button onclick="window.parent.postMessage({
+                type: 'locationSelected',
+                lat: ${newPos.lat},
+                lng: ${newPos.lng}
+            }, '*')">Use This Location</button>
+        `);
+    });
+}
+"""
 
-m
-
-import folium
-
-# Create a blank map centered on Toronto
-m = folium.Map(
-    location=[43.7, -79.4],  # Toronto center
-    zoom_start=12,           # Initial zoom level
-    min_zoom=12,             # Prevent zooming out
-    max_zoom=18,             # Optional: Prevent excessive zooming in
-    control_scale=True       # Shows scale bar
-)
-
-# Restrict panning to a bounding box
-m.fit_bounds([[43.5, -79.6], [43.8, -79.2]])
-m.options['maxBounds'] = [[43.58, -79.65], [43.82, -79.15]]
-
-m
-
-# Add a click event to place markers
-folium.LatLngPopup().add_to(m)  # Click to add a marker with coordinates
-
-# Restrict panning
-m.fit_bounds([[43.5, -79.6], [43.8, -79.2]])
-m.options['maxBounds'] = [[43.58, -79.65], [43.82, -79.15]]
-
-m  # Display the map
+# Add the JavaScript to the map
+m.get_root().html.add_child(folium.Element(f"""
+    <script>
+        {click_js}
+        map.on('click', {click_js});
+    </script>
+"""))
 
 
-import folium
-from folium.plugins import Draw
-
-# Create a blank map
-m = folium.Map(
-    location=[43.7, -79.4],
-    zoom_start=12,
-    min_zoom=12,
-    max_zoom=18,
-)
-
-# Add a custom icon (e.g., bike theft marker)
-bike_icon = folium.Icon(
-    icon="bicycle",           # FontAwesome icon (or use custom image)
-    prefix="fa",              # Requires FontAwesome CSS
-    color="red"
-)
-
-# Enable drawing tools (users can add markers)
-Draw(
-    export=True,              # Allows saving marker data
-    draw_options={
-        "marker": {"icon": bike_icon},  # Use custom icon
-        "circle": False,      # Disable drawing circles
-        "polygon": False,     # Disable drawing polygons
-    }
-).add_to(m)
-
-# Restrict panning
-m.fit_bounds([[43.5, -79.6], [43.8, -79.2]])
-m.options['maxBounds'] = [[43.58, -79.65], [43.82, -79.15]]
-
-m  # Display the map
-
-Draw(
-    export=True,
-    filename='my_markers.geojson',  # Optional: save markers to file
-    position='topleft',
-    draw_options={
-        'marker': True,  # Enable marker drawing
-        'circle': False,  # Disable other drawing tools
-        'polygon': False,
-        'polyline': False,
-        'rectangle': False
-    }
-).add_to(m)
-
-m
-
-# 2. Add CN Tower marker (example)
-folium.Marker(
-    [43.6426, -79.3871],
-    popup="CN Tower",
-    icon=folium.Icon(color='red')
-).add_to(m)
-
-# 3. Simple click-to-add-marker functionality
-m.add_child(folium.ClickForMarker(
-    "<b>New Point</b><br>Double-click to edit",
-    icon=folium.Icon(color='blue')
-))
-
-// Code for universal markers
-m.get_root().html.add_child(folium.Element("""
-<!-- Add Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+In index.html add this:
 
 <script>
-    // Your Firebase configuration
-    const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT.firebaseapp.com",
-        databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-        projectId: "YOUR_PROJECT",
-        storageBucket: "YOUR_PROJECT.appspot.com",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID"
-    };
-    
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-    
-    // Reference to markers in database
-    const markersRef = database.ref('markers');
-    
-    // Add new marker to database
-    function addMarkerToFirebase(lat, lng, popup) {
-        const newMarkerRef = markersRef.push();
-        newMarkerRef.set({
-            lat: lat,
-            lng: lng,
-            popup: popup || 'No description',
-            timestamp: firebase.database.ServerValue.TIMESTAMP
-        });
-    }
-    
-    // Listen for new markers
-    markersRef.on('child_added', (snapshot) => {
-        const marker = snapshot.val();
-        L.marker([marker.lat, marker.lng])
-            .bindPopup(marker.popup)
-            .addTo(map);
-    });
-    
-    // Handle marker creation
-    map.on('click', function(e) {
-        const popup = prompt("Enter description for this marker:");
-        addMarkerToFirebase(e.latlng.lat, e.latlng.lng, popup);
+    // Listen for location selections from the map
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'locationSelected') {
+            // Update your form fields
+            document.getElementById('location').value = 
+                `${event.data.lat.toFixed(6)}, ${event.data.lng.toFixed(6)}`;
+            
+            // You can also store these coordinates for form submission
+            window.selectedLocation = {
+                lat: event.data.lat,
+                lng: event.data.lng
+            };
+        }
     });
 </script>
-"""))
-m
-
-
-
-// Function to load reports from server
-function loadReports() {
-    fetch('/api/reports')
-        .then(response => response.json())
-        .then(reports => {
-            // Clear existing markers
-            reportMarkers.forEach(marker => map.removeLayer(marker));
-            reportMarkers = [];
-            
-            // Add each report as a marker
-            reports.forEach(report => {
-                if (report.latitude && report.longitude) {
-                    const marker = L.marker([report.latitude, report.longitude])
-                        .bindPopup(`<strong>${report.issue}</strong><br>${report.location}`)
-                        .addTo(map);
-                    
-                    reportMarkers.push(marker);
-                }
-            });
-        })
-        .catch(error => console.error('Error loading reports:', error));
-}
-
-// Load reports when page loads
-document.addEventListener('DOMContentLoaded', loadReports);
-
-// Reload reports periodically or after submission
-setInterval(loadReports, 60000); // Reload every minute
-
-
-
-#m.add_child(folium.ClickForMarker(
-    #"<b>New Point</b><br>Double-click to edit",
-    # icon=folium.Icon(color='blue')
-    #))
+var map = L.map('map').setView([43.7, -79.4], 12);  // Initialize the map
