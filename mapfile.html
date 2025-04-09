@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_c37f654104ad3f72daa83472bcd9d7ba {
+                #map_a849d618cd06a20633dbde73cf3c4dcc {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -39,32 +39,33 @@
 <body>
     
     <script>
-    window.onload = function() {
-        var map =  L.map('{m.get_name()}'); // Initialize the map
+map.on('click', function(e) {
+    var lat = e.latlng.lat;
+    var lng = e.latlng.lng;
+    alert("You clicked at Latitude: " + lat + ", Longitude: " + lng);
+    // Add a marker on the clicked position
+    var marker = L.marker([lat, lng]).addTo(map);
+    marker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
 
-        // Set the tile layer for the map (using OpenStreetMap as the tile source)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    // Retrieve the existing coordinates from localStorage
+    var coordinates = JSON.parse(localStorage.getItem("coordinates")) || [];
 
-        map.on('click', function(e) {
-            var lat = e.latlng.lat;
-            var lng = e.latlng.lng;
-            alert("You clicked at Latitude: " + lat + ", Longitude: " + lng);
-            console.log("Latitude: " + lat + ", Longitude: " + lng);  // Logs to the console
-            // Add a marker on the clicked position
-            var marker = L.marker([lat, lng]).addTo(map);
-            marker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
-        });
-    };
+    // Add the new coordinates
+    coordinates.push({lat: lat, lng: lng});
+
+    // Save the updated coordinates back to localStorage
+    localStorage.setItem("coordinates", JSON.stringify(coordinates));
+});
 </script>
     
-            <div class="folium-map" id="map_c37f654104ad3f72daa83472bcd9d7ba" ></div>
+            <div class="folium-map" id="map_a849d618cd06a20633dbde73cf3c4dcc" ></div>
         
 </body>
 <script>
     
     
-            var map_c37f654104ad3f72daa83472bcd9d7ba = L.map(
-                "map_c37f654104ad3f72daa83472bcd9d7ba",
+            var map_a849d618cd06a20633dbde73cf3c4dcc = L.map(
+                "map_a849d618cd06a20633dbde73cf3c4dcc",
                 {
                     center: [43.7, -79.4],
                     crs: L.CRS.EPSG3857,
@@ -86,13 +87,13 @@
 
                 }
             );
-            L.control.scale().addTo(map_c37f654104ad3f72daa83472bcd9d7ba);
+            L.control.scale().addTo(map_a849d618cd06a20633dbde73cf3c4dcc);
 
             
 
         
     
-            var tile_layer_2c6b38782a469015f6eecc15653a29c0 = L.tileLayer(
+            var tile_layer_fa32670341b05c9c4e3cf3f158bfa23b = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 12,
@@ -109,40 +110,40 @@
             );
         
     
-            tile_layer_2c6b38782a469015f6eecc15653a29c0.addTo(map_c37f654104ad3f72daa83472bcd9d7ba);
+            tile_layer_fa32670341b05c9c4e3cf3f158bfa23b.addTo(map_a849d618cd06a20633dbde73cf3c4dcc);
         
     
-            map_c37f654104ad3f72daa83472bcd9d7ba.fitBounds(
+            map_a849d618cd06a20633dbde73cf3c4dcc.fitBounds(
                 [[43.5, -79.6], [43.8, -79.2]],
                 {}
             );
         
     
-            map_c37f654104ad3f72daa83472bcd9d7ba.fitBounds(
+            map_a849d618cd06a20633dbde73cf3c4dcc.fitBounds(
                 [[43.5, -79.6], [43.8, -79.2]],
                 {}
             );
         
     
                 function newMarker(e){
-                    var new_mark = L.marker().setLatLng(e.latlng).addTo(map_c37f654104ad3f72daa83472bcd9d7ba);
+                    var new_mark = L.marker().setLatLng(e.latlng).addTo(map_a849d618cd06a20633dbde73cf3c4dcc);
                     new_mark.dragging.enable();
-                    new_mark.on('dblclick', function(e){ map_c37f654104ad3f72daa83472bcd9d7ba.removeLayer(e.target)})
+                    new_mark.on('dblclick', function(e){ map_a849d618cd06a20633dbde73cf3c4dcc.removeLayer(e.target)})
                     var lat = e.latlng.lat.toFixed(4),
                        lng = e.latlng.lng.toFixed(4);
                     new_mark.bindPopup(`<b>HEY!</b><br>Wanna add a report??`);
                     };
-                map_c37f654104ad3f72daa83472bcd9d7ba.on('click', newMarker);
+                map_a849d618cd06a20633dbde73cf3c4dcc.on('click', newMarker);
             
     
-            var marker_8d0aade7b230104c36d31c41bfdc7ef8 = L.marker(
+            var marker_706d9c23d024f6661fda13964c11e353 = L.marker(
                 [43.7, -79.4],
                 {
 }
-            ).addTo(map_c37f654104ad3f72daa83472bcd9d7ba);
+            ).addTo(map_a849d618cd06a20633dbde73cf3c4dcc);
         
     
-            var icon_7808d12a2a4119324fe74ddccdc3e80c = L.AwesomeMarkers.icon(
+            var icon_533253236fdf9b36a7ca3debe00558ed = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "red",
@@ -153,24 +154,24 @@
             );
         
     
-        var popup_ec987410218f53cbc146376f61a7aa37 = L.popup({
+        var popup_33b8b9c58221d882c823788507daf816 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_fe0e7fa91f001b1b5f89a396ec7e5b4d = $(`<div id="html_fe0e7fa91f001b1b5f89a396ec7e5b4d" style="width: 100.0%; height: 100.0%;">Visited Feb 2020</div>`)[0];
-                popup_ec987410218f53cbc146376f61a7aa37.setContent(html_fe0e7fa91f001b1b5f89a396ec7e5b4d);
+                var html_22dbf612242b2c555b130d07187d6516 = $(`<div id="html_22dbf612242b2c555b130d07187d6516" style="width: 100.0%; height: 100.0%;">Visited Feb 2020</div>`)[0];
+                popup_33b8b9c58221d882c823788507daf816.setContent(html_22dbf612242b2c555b130d07187d6516);
             
         
 
-        marker_8d0aade7b230104c36d31c41bfdc7ef8.bindPopup(popup_ec987410218f53cbc146376f61a7aa37)
+        marker_706d9c23d024f6661fda13964c11e353.bindPopup(popup_33b8b9c58221d882c823788507daf816)
         ;
 
         
     
     
-            marker_8d0aade7b230104c36d31c41bfdc7ef8.bindTooltip(
+            marker_706d9c23d024f6661fda13964c11e353.bindTooltip(
                 `<div>
                      Toronto
                  </div>`,
@@ -180,7 +181,7 @@
             );
         
     
-                marker_8d0aade7b230104c36d31c41bfdc7ef8.setIcon(icon_7808d12a2a4119324fe74ddccdc3e80c);
+                marker_706d9c23d024f6661fda13964c11e353.setIcon(icon_533253236fdf9b36a7ca3debe00558ed);
             
 </script>
 </html>
