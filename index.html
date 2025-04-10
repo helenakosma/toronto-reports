@@ -48,6 +48,7 @@
                         <h2 style="font-size: 35px; font-weight: bold;">Report a Problem</h2>
                         <p>Fill out the form below to report a problem.</p>
                     </div>
+
                     <div class="iconText">
                         <label for="iconSelection" style="font-size: 22px; font-weight: bold;">Select an Issue Icon:</label><br>
                     </div>
@@ -87,6 +88,25 @@
                 
                     <label for="description" style="font-size: 22px; font-weight: bold;">Problem Description:</label><br>
                     <input type="text" id="description" name="description" placeholder="Enter a description of the problem (max 20 words)"><br><br>
+
+                    <label for="userName" style="font-size: 22px; font-weight: bold;">Name:</label><br>
+                    <input type="text" id="userName" name="location" placeholder="Enter your full name"><br><br>
+
+                    <label for="email" style="font-size: 22px; font-weight: bold;">Email:</label><br>
+                    <input type="text" id="email" name="location" placeholder="Enter your email"><br><br>
+
+                    <label for="" style="font-size: 22px; font-weight: bold;">Report Notifications:</label><br>
+                    <p style="font-size: 18px;">Want to recieve updates about your report's status?</p>
+                    <div class="checkbox-options">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="yes" value="Yes">
+                            <label for="yes">Yes</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="no" value="No">
+                            <label for="no">No</label>
+                        </div>
+                    </div>
                 
                     <button type="button" id="submitButton" style="font-size: 20px; font-weight: bold;">Submit</button>
                 </form>
