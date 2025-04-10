@@ -22,6 +22,7 @@ document.getElementById("confirmButton").addEventListener("click", function() {
     //Reset form fields in case user wants to make another submission
     document.getElementById("reportForm").reset();
 
+    //Reset the button shadows
     selectIcon(null);
     
 });
