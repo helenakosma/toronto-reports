@@ -36,50 +36,68 @@
     <section id="report">
         <div class="report-header">
             <h1 style="font-size: 50px; font-weight: bold;">Report a Problem</h1>
-            <p>Click a location on the map to get started.</p>
+            <p style="font-size: 20px;">Click a location on the map to get started.</p>
         </div>
         <div class="report-content">
             <div class="map_img">
                 <iframe src="mapfile.html" width="600" height="600" style="border:none;"></iframe>
             </div>
             <div class="report-text">
-                <form>
+                <form id="reportForm">
                     <div class="report-text__header">
                         <h2 style="font-size: 35px; font-weight: bold;">Report a Problem</h2>
                         <p>Fill out the form below to report a problem.</p>
                     </div>
-                    <label for="issue">Issue:</label><br>
-                    <select id="issueType" name="issueType" required style="width: 250px; height: 50px; font-size: 16px;">
-                        <option value="">Select an issue</option>
-                        <option value ="Snow Clearing">Snow Clearing</option>
-                        <option value ="Pest Complaint">Pest Complaint</option>
-                        <option value ="Waste Collection">Waste Collection</option>
-                        <option value ="Graffiti">Graffiti</option>
-                        <option value ="Sewage and Water">Sewage and Water</option>
-                        <option value ="Spills">Spills</option>
-                        <option value ="Bylaw Violation">Bylaw Violation</option>
-                    </select><br><br>
-
-                    <!--<input type="text" id="issue" name="issue" placeholder="Describe the problem"><br><br> -->
-
-                    <label for="issue">Problem Severity:</label><br>
-                    <select id="issueType" name="issueType" required style="width: 250px; height: 50px; font-size: 16px;">
+                
+                    <label for="issue" style="font-size: 22px; font-weight: bold;">Issue:</label><br>
+                    <div class="icon-container">
+                        <div class="icon" id="icon1" onclick="selectIcon(1)">
+                            <img src="media/1.png" alt="Icon 1">
+                        </div>
+                        <div class="icon" id="icon2" onclick="selectIcon(2)">
+                            <img src="2.png" alt="Icon 2">
+                        </div>
+                        <div class="icon" id="icon3" onclick="selectIcon(3)">
+                            <img src="3.png" alt="Icon 3">
+                        </div>
+                        <div class="icon" id="icon4" onclick="selectIcon(4)">
+                            <img src="4.png" alt="Icon 4">
+                        </div>
+                        <div class="icon" id="icon5" onclick="selectIcon(5)">
+                            <img src="5.png" alt="Icon 5">
+                        </div>
+                        <div class="icon" id="icon6" onclick="selectIcon(6)">
+                            <img src="6.png" alt="Icon 6">
+                        </div>
+                    </div>
+                
+                    <label for="severity" style="font-size: 22px; font-weight: bold;">Problem Severity:</label><br>
+                    <select id="severity" name="severity" required class="severity-format">
                         <option value="">Select a severity level</option>
-                        <option value ="Severe">Severe</option>
-                        <option value ="High">High</option>
-                        <option value ="Moderate">Moderate</option>
-                        <option value ="Low">Low</option>
+                        <option value="Severe">Severe</option>
+                        <option value="High">High</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Low">Low</option>
                     </select><br><br>
-
-                    <label for="location">Location:</label><br>
-                    <input type="text" id="location" name="location" placeholder="Enter location"><br><br>
-
-                    <label for="location">Problem Description:</label><br>
-                    <input type="text" id="location" name="location" placeholder="Enter a description of the problem (max 10 words)"><br><br>
-        
-                    <button type="submit" style="font-size: 20px; font-weight: bold;">Submit</button>
-                    
+                
+                    <label for="location" style="font-size: 22px; font-weight: bold;">Location:</label><br>
+                    <input type="text" id="location" name="location" placeholder="Enter the location's name"><br><br>
+                
+                    <label for="description" style="font-size: 22px; font-weight: bold;">Problem Description:</label><br>
+                    <input type="text" id="description" name="description" placeholder="Enter a description of the problem (max 10 words)"><br><br>
+                
+                    <button type="button" id="submitButton" style="font-size: 20px; font-weight: bold;">Submit</button>
                 </form>
+  
+                <div id="confirmationButton" class="confirmation" style="display: none;">
+                    <div class="confirmation-consent">
+                        <p>Are you sure you want to submit this report?</p>
+                        <div class="confirmation-buttons">
+                            <button id="cancelButton" class="cancel-button">Cancel</button>
+                            <button id="confirmButton" class="confirm-button">Confirm</button>
+                        </div>
+                    </div>   
+                </div>                
             </div>
 
             <div id="confirmationButton" class="confirmation" style="display: none;">
