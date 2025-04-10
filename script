@@ -1,4 +1,4 @@
-@media screen and (max-width: 1400) {
+@media screen and (max-width: 1400px) {
     #report {
         height: 83vh;
         margin-bottom: 6rem;
@@ -100,3 +100,5 @@
         text-align: justify;
     }
     }
+
+    
