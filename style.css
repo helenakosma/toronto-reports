@@ -270,8 +270,8 @@ form button {
   
   
   .icon {
-    width: 10%;
-    height: 10%;
+    width: 60px;
+    height: 60px;
     border: 2px solid transparent;
     border-radius: 50%;
     overflow: hidden;
@@ -289,6 +289,7 @@ form button {
     border-color: rgba(250, 225, 86, 0.651);
     box-shadow: 0 0 20px 5px rgba(255, 246, 122, 0.6); /* Adjusted the shadow to be round */
     transform: scale(1.05);
+    border-radius: 50%;
   }
   
 
