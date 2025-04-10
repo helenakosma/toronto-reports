@@ -10,6 +10,7 @@ function hideConfirmationPopup() {
 
 document.getElementById("cancelButton").addEventListener("click", function() {
     hideConfirmationPopup(); 
+}
 
 document.getElementById("confirmButton").addEventListener("click", function() {
     submitReport(); 

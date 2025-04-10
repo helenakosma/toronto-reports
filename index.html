@@ -48,29 +48,31 @@
                         <h2 style="font-size: 35px; font-weight: bold;">Report a Problem</h2>
                         <p>Fill out the form below to report a problem.</p>
                     </div>
-                
-                    <label for="issue" style="font-size: 22px; font-weight: bold;">Issue:</label><br>
-                    <div class="icon-container">
-                        <div class="icon" id="icon1" onclick="selectIcon(1)">
-                            <img src="media/1.png" alt="Icon 1">
-                        </div>
-                        <div class="icon" id="icon2" onclick="selectIcon(2)">
-                            <img src="2.png" alt="Icon 2">
-                        </div>
-                        <div class="icon" id="icon3" onclick="selectIcon(3)">
-                            <img src="3.png" alt="Icon 3">
-                        </div>
-                        <div class="icon" id="icon4" onclick="selectIcon(4)">
-                            <img src="4.png" alt="Icon 4">
-                        </div>
-                        <div class="icon" id="icon5" onclick="selectIcon(5)">
-                            <img src="5.png" alt="Icon 5">
-                        </div>
-                        <div class="icon" id="icon6" onclick="selectIcon(6)">
-                            <img src="6.png" alt="Icon 6">
-                        </div>
+                    <div class="iconText">
+                        <label for="iconSelection" style="font-size: 22px; font-weight: bold;">Select an Issue Icon:</label><br>
                     </div>
-                
+                    <div class="icon-container">
+                      <div class="icon" id="icon1" onclick="selectIcon(1)">
+                        <img src="1.png" alt="Icon 1">
+                      </div>
+                      <div class="icon" id="icon2" onclick="selectIcon(2)">
+                        <img src="2.png" alt="Icon 2">
+                      </div>
+                      <div class="icon" id="icon3" onclick="selectIcon(3)">
+                        <img src="3.png" alt="Icon 3">
+                      </div>
+                      <div class="icon" id="icon4" onclick="selectIcon(4)">
+                        <img src="4.png" alt="Icon 4">
+                      </div>
+                      <div class="icon" id="icon5" onclick="selectIcon(5)">
+                        <img src="5.png" alt="Icon 5">
+                      </div>
+                      <div class="icon" id="icon6" onclick="selectIcon(6)">
+                        <img src="6.png" alt="Icon 6">
+                      </div>
+                    </div>
+                    <input type="hidden" id="selectedIcon" name="selectedIcon" value="">
+                    
                     <label for="severity" style="font-size: 22px; font-weight: bold;">Problem Severity:</label><br>
                     <select id="severity" name="severity" required class="severity-format">
                         <option value="">Select a severity level</option>
