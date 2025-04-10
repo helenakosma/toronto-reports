@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_47d1ca14e4ba8572f89791a55331d341 {
+                #map_f362858bb08eda33331d604db10c3fc1 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -39,33 +39,70 @@
 <body>
     
     <script>
-map.on('click', function(e) {
-    var lat = e.latlng.lat;
-    var lng = e.latlng.lng;
-    alert("You clicked at Latitude: " + lat + ", Longitude: " + lng);
-    // Add a marker on the clicked position
-    var marker = L.marker([lat, lng]).addTo(map);
-    marker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
+// Wait for the map to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize storage with empty array if not exists
+    if (!localStorage.getItem('coordinates')) {
+        localStorage.setItem('coordinates', JSON.stringify([]));
+        console.log('Initialized empty coordinates storage');
+    }
 
-    // Retrieve the existing coordinates from localStorage
-    var coordinates = JSON.parse(localStorage.getItem("coordinates")) || [];
+    // Get the map instance
+    var map;
+    var maxRetries = 10;
+    var retryCount = 0;
 
-    // Add the new coordinates
-    coordinates.push({lat: lat, lng: lng});
+    function initMap() {
+        map = window.map_f362858bb08eda33331d604db10c3fc1;
 
-    // Save the updated coordinates back to localStorage
-    localStorage.setItem("coordinates", JSON.stringify(coordinates));
+         if (!map) {
+             if (retryCount < maxRetries) {
+                 retryCount++;
+                 setTimeout(initMap, 100);
+                 return;
+             }
+             console.error('Failed to find map after', maxRetries, 'retries');
+             return;
+         } 
+        // might not need the part above?
+
+        // Successfully got map instance
+        console.log('Map initialized successfully');
+        console.log('Current coordinates:', JSON.parse(localStorage.getItem('coordinates')));
+
+        map.on('click', function(e) {
+            var coords = JSON.parse(localStorage.getItem('coordinates'));
+            var newCoord = {
+                lat: e.latlng.lat.toFixed(6),
+                lng: e.latlng.lng.toFixed(6),
+                timestamp: new Date().toISOString()
+            };
+
+            coords.push(newCoord);
+            localStorage.setItem('coordinates', JSON.stringify(coords));
+
+            // Add marker
+            var marker = L.marker([newCoord.lat, newCoord.lng], {draggable: true}).addTo(map);
+            marker.bindPopup('Added: ' + newCoord.lat + ', ' + newCoord.lng);
+
+            console.log('New coordinate added:', newCoord);
+            console.log('All coordinates:', coords);
+        });
+    }
+
+    // Start initialization
+    initMap();
 });
 </script>
     
-            <div class="folium-map" id="map_47d1ca14e4ba8572f89791a55331d341" ></div>
+            <div class="folium-map" id="map_f362858bb08eda33331d604db10c3fc1" ></div>
         
 </body>
 <script>
     
     
-            var map_47d1ca14e4ba8572f89791a55331d341 = L.map(
-                "map_47d1ca14e4ba8572f89791a55331d341",
+            var map_f362858bb08eda33331d604db10c3fc1 = L.map(
+                "map_f362858bb08eda33331d604db10c3fc1",
                 {
                     center: [43.7, -79.4],
                     crs: L.CRS.EPSG3857,
@@ -87,13 +124,13 @@ map.on('click', function(e) {
 
                 }
             );
-            L.control.scale().addTo(map_47d1ca14e4ba8572f89791a55331d341);
+            L.control.scale().addTo(map_f362858bb08eda33331d604db10c3fc1);
 
             
 
         
     
-            var tile_layer_12906abb0b2fb0f6f4b145c9cbe90464 = L.tileLayer(
+            var tile_layer_bd484ad60fc91a342ca85fe4ffb2e472 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 12,
@@ -110,40 +147,29 @@ map.on('click', function(e) {
             );
         
     
-            tile_layer_12906abb0b2fb0f6f4b145c9cbe90464.addTo(map_47d1ca14e4ba8572f89791a55331d341);
+            tile_layer_bd484ad60fc91a342ca85fe4ffb2e472.addTo(map_f362858bb08eda33331d604db10c3fc1);
         
     
-            map_47d1ca14e4ba8572f89791a55331d341.fitBounds(
+            map_f362858bb08eda33331d604db10c3fc1.fitBounds(
                 [[43.5, -79.6], [43.8, -79.2]],
                 {}
             );
         
     
-            map_47d1ca14e4ba8572f89791a55331d341.fitBounds(
+            map_f362858bb08eda33331d604db10c3fc1.fitBounds(
                 [[43.5, -79.6], [43.8, -79.2]],
                 {}
             );
         
     
-                function newMarker(e){
-                    var new_mark = L.marker().setLatLng(e.latlng).addTo(map_47d1ca14e4ba8572f89791a55331d341);
-                    new_mark.dragging.enable();
-                    new_mark.on('dblclick', function(e){ map_47d1ca14e4ba8572f89791a55331d341.removeLayer(e.target)})
-                    var lat = e.latlng.lat.toFixed(4),
-                       lng = e.latlng.lng.toFixed(4);
-                    new_mark.bindPopup(`<b>HEY!</b><br>Wanna add a report??`);
-                    };
-                map_47d1ca14e4ba8572f89791a55331d341.on('click', newMarker);
-            
-    
-            var marker_28386f9f3707fb1bcabfa78997c0767f = L.marker(
+            var marker_2e7acf541645fc7039a17964244488bd = L.marker(
                 [43.7, -79.4],
                 {
 }
-            ).addTo(map_47d1ca14e4ba8572f89791a55331d341);
+            ).addTo(map_f362858bb08eda33331d604db10c3fc1);
         
     
-            var icon_bd193d6f5f89c29effefc0655f323602 = L.AwesomeMarkers.icon(
+            var icon_dbfdd3d8f9e9aaf99729d67b5a6f8532 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "red",
@@ -154,24 +180,24 @@ map.on('click', function(e) {
             );
         
     
-        var popup_187c11a006e6e4534e49e01f8319e1a4 = L.popup({
+        var popup_e3d8d6379881e433fcd920d32298673e = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_992044415d070b14b3c0f3d08e1b3a9d = $(`<div id="html_992044415d070b14b3c0f3d08e1b3a9d" style="width: 100.0%; height: 100.0%;">Visited Feb 2020</div>`)[0];
-                popup_187c11a006e6e4534e49e01f8319e1a4.setContent(html_992044415d070b14b3c0f3d08e1b3a9d);
+                var html_0fcefbcc958a99d414f23abfc214c4ff = $(`<div id="html_0fcefbcc958a99d414f23abfc214c4ff" style="width: 100.0%; height: 100.0%;">Visited Feb 2020</div>`)[0];
+                popup_e3d8d6379881e433fcd920d32298673e.setContent(html_0fcefbcc958a99d414f23abfc214c4ff);
             
         
 
-        marker_28386f9f3707fb1bcabfa78997c0767f.bindPopup(popup_187c11a006e6e4534e49e01f8319e1a4)
+        marker_2e7acf541645fc7039a17964244488bd.bindPopup(popup_e3d8d6379881e433fcd920d32298673e)
         ;
 
         
     
     
-            marker_28386f9f3707fb1bcabfa78997c0767f.bindTooltip(
+            marker_2e7acf541645fc7039a17964244488bd.bindTooltip(
                 `<div>
                      Toronto
                  </div>`,
@@ -181,7 +207,7 @@ map.on('click', function(e) {
             );
         
     
-                marker_28386f9f3707fb1bcabfa78997c0767f.setIcon(icon_bd193d6f5f89c29effefc0655f323602);
+                marker_2e7acf541645fc7039a17964244488bd.setIcon(icon_dbfdd3d8f9e9aaf99729d67b5a6f8532);
             
 </script>
 </html>

@@ -160,7 +160,7 @@ a:hover {
     align-items: center;
     padding: 2rem;
     height: 70vh;
-    margin-top: 100px;
+    margin-top: 90px;
 }
 
 .report_header {
@@ -177,12 +177,7 @@ a:hover {
     width: 100%;
     max-width: 1200px;
     margin-top: 60px;
-}
-
-.map_img img {
-    height: 400px;
-    width: 400px;
-    object-fit: cover;
+    display: flex;
 }
 
 .report-text {
@@ -220,7 +215,7 @@ form button {
 
 .report-header h1 {
     font-size: 2rem;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     color: #ffffff;
 }
 
@@ -279,13 +274,14 @@ form button {
 /* SUPPORT SECTION */
 #support {
     background-color: #000000;
-    padding: 2rem;
+    padding: 1rem;
     color: #ffffff;
 }
 
 .support-header {
     text-align: center;
-    margin-bottom: 800px;
+    margin-bottom: 20px;
+    margin-top: 400px;
 }
 
 .support-header h2 {
@@ -296,7 +292,6 @@ form button {
 .support-header p {
     font-size: 1.2rem;
     color: #f8f8f8;
-    margin-bottom: 700px;
 }
 
 .feedback-form {
