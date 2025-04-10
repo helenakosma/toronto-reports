@@ -35,7 +35,7 @@
     </section>
     <section id="report">
         <div class="report-header">
-            <h1>Report a Problem</h1>
+            <h1 style="font-size: 50px; font-weight: bold;">Report a Problem</h1>
             <p>Click a location on the map to get started.</p>
         </div>
         <div class="report-content">
@@ -44,7 +44,10 @@
             </div>
             <div class="report-text">
                 <form>
-                    <label for="formTitle" style="font-size: 35px; font-weight: bold;">Problem Report</label><br>
+                    <div class="report-text__header">
+                        <h2 style="font-size: 35px; font-weight: bold;">Report a Problem</h2>
+                        <p>Fill out the form below to report a problem.</p>
+                    </div>
                     <label for="issue">Issue:</label><br>
                     <select id="issueType" name="issueType" required style="width: 250px; height: 50px; font-size: 16px;">
                         <option value="">Select an issue</option>
@@ -75,29 +78,57 @@
                     <input type="text" id="location" name="location" placeholder="Enter a description of the problem (max 10 words)"><br><br>
         
                     <button type="submit" style="font-size: 20px; font-weight: bold;">Submit</button>
+                    
                 </form>
             </div>
-        </div>
-    </section>    
-    <section id="support">
-        <div class="support-header">
-            <h2>Got Feedback???</h2>
-            <p>If you have any suggestions or feedback about the website, let us know!</p>
-        </div>
-        
-        <form class="feedback-form">
-            <label for="name">Your Name (optional):</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name">
-            
-            <label for="email">Your Email (optional):</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email">
-            
-            <label for="feedback">Your Feedback:</label>
-            <input type="email" id="email" name="email" placeholder="Write your feedback here">
 
-            <button type="submit" class="submit-btn">Submit Feedback</button>
-        </form>
-    </section>    
+            <div id="confirmationButton" class="confirmation" style="display: none;">
+                <div class="confirmation-content">
+                    <p>Are you sure you want to submit this report?</p>
+                    <div class="confirmation-buttons">
+                        <button id="cancelButton" class="cancel-button">Cancel</button>
+                        <button id="confirmButton" class="confirm-button">Confirm</button>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </section> 
+    
+    <style>
+        .confirmation {
+            display: none;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            
+        }
+
+
+    </style>
+
+
+
+
+    <section id="support">
+        <div class="support-container">
+            <div class="support-header">
+                <h2>Got Feedback?</h2>
+                <p>If you have any suggestions or feedback about the website, let us know!</p>
+            </div>
+            <form class="feedback-form">
+                <label for="feedback-name">Your Name (optional):</label>
+                <input type="text" id="feedback-name" name="name" placeholder="Enter your name">
+                
+                <label for="feedback-email">Your Email (optional):</label>
+                <input type="email" id="feedback-email" name="email" placeholder="Enter your email">
+                
+                <label for="feedback-message">Your Feedback:</label>
+                <textarea id="feedback-message" name="feedback" placeholder="Write your feedback here"></textarea>
+            
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </form>
+        </div>
+    </section>   
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/cypress@12.0.0/dist/cypress.min.js"></script> 
     <h1></h1>
