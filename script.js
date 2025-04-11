@@ -25,7 +25,7 @@ function submitReport() {
 }
 
 document.getElementById("confirmButton").addEventListener("click", function() {
-    submitReport();
+    if (submitReport()) {
 
     alert("Submitted successfully!"); 
 
@@ -36,6 +36,8 @@ document.getElementById("confirmButton").addEventListener("click", function() {
 
     //Reset the button shadows
     selectIcon(null);
+    }
+
     
 });
 
@@ -46,17 +48,27 @@ document.getElementById("submitButton").addEventListener("click", function(event
 });
 
 function selectIcon(iconId) {
-    // Clear the selected state of all icons
     const allIcons = document.querySelectorAll('.icon');
     allIcons.forEach(icon => {
       icon.classList.remove('selected');
     });
   
-    // Select the clicked icon and update the hidden input
     const selectedIcon = document.getElementById('icon' + iconId);
     selectedIcon.classList.add('selected');
   
-    // Update the hidden input field with the selected icon ID
     document.getElementById('selectedIcon').value = iconId;
   }
   
+  const severitySlider = document.getElementById('severity');
+  const severityValue = document.getElementById('severity-value');
+  
+  const severityLevels = ["Low", "Moderate", "High", "Severe"];
+  
+  severityValue.textContent = severityLevels[severitySlider.value - 1];
+  
+  severitySlider.addEventListener('input', function() {
+      const value = severitySlider.value;
+      severityValue.textContent = severityLevels[value - 1]; 
+  });
+  
+

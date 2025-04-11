@@ -267,7 +267,7 @@ form button {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    margin-top: 10px;
+    margin-bottom: 20px;
     justify-content: center;
 
 }
@@ -279,6 +279,8 @@ form button {
     font-size: 18px;
     background-color: rgba(255, 255, 255, 0.1);
     position: relative;
+    border-radius: 5px;
+
 }
 
 .checkbox-item:hover {
@@ -296,6 +298,13 @@ form button {
     display: flex;
 }
 
+.checkbox-item input[type="radio"] {
+    margin: 0; 
+    width: 18px; 
+    height: 28px; 
+    accent-color: #ffe08a; 
+}
+
 /* ICONS */ 
 
 .icon-container {
@@ -305,10 +314,9 @@ form button {
     gap: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-  
-  
-  .icon {
+}
+
+.icon {
     width: 60px;
     height: 60px;
     border: 2px solid transparent;
@@ -316,21 +324,38 @@ form button {
     overflow: hidden;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-  }
-  
-  .icon img {
+    position: relative;
+}
+
+.icon img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  
-  .icon.selected {
+}
+
+.icon.selected {
     border-color: rgba(250, 225, 86, 0.651);
-    box-shadow: 0 0 20px 5px rgba(255, 246, 122, 0.6); /* Adjusted the shadow to be round */
+    box-shadow: 0 0 20px 5px rgba(255, 246, 122, 0.6);
     transform: scale(1.05);
     border-radius: 50%;
-  }
-  
+}
+
+.icon[title]:hover::after {
+    content: attr(title);  
+    position: absolute;
+    bottom: 120%;  
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #313131;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 4px;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+}
+ 
 
 /* POP_UP */ 
 
