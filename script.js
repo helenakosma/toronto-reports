@@ -2,13 +2,13 @@ function showConfirmationPopup() {
     const confirmationPopup = document.getElementById("confirmationButton");
     confirmationPopup.style.display = "flex"; 
 }
-// This is a comment
+
 function hideConfirmationPopup() {
     const confirmationPopup = document.getElementById("confirmationButton");
     confirmationPopup.style.display = "none"; 
 }
 
-document.getElementById("cancelButton").addEventListener("click", function() {  // Fixed the syntax error here
+document.getElementById("cancelButton").addEventListener("click", function() {
     hideConfirmationPopup(); 
 });
 
