@@ -5,12 +5,12 @@ const locationDatabase = [
         draggable: false
     },
     {
-        coordinates: [43.7, -79.27]
+        coordinates: [43.7, -79.27],
         title: "Graffiti",
         draggable: false
     },
     {
-        coordinates: [43.61,-79.31]
+        coordinates: [43.61,-79.31],
         title: "Water Leak",
         draggable: false 
     }
