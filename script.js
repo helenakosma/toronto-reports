@@ -12,6 +12,18 @@ document.getElementById("cancelButton").addEventListener("click", function() {  
     hideConfirmationPopup(); 
 });
 
+function submitReport() {
+    const form = document.querySelector("form"); 
+    const notificationChoice = document.querySelector('input[name="notifications"]:checked');
+
+    if (!notificationChoice) {
+        alert("Please select whether you want notifications.");
+        return false;
+    }
+
+    console.log("Report submitted.");
+}
+
 document.getElementById("confirmButton").addEventListener("click", function() {
     submitReport();
 
@@ -27,12 +39,6 @@ document.getElementById("confirmButton").addEventListener("click", function() {
     
 });
 
-function submitReport() {
-    const form = document.querySelector("form"); 
-
-    console.log("Report submitted via custom handling (AJAX or other).");
-
-}
 
 document.getElementById("submitButton").addEventListener("click", function(event) {
     event.preventDefault();
