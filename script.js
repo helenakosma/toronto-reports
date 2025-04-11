@@ -34,6 +34,7 @@ document.getElementById("confirmButton").addEventListener("click", function() {
     document.getElementById("reportForm").reset();
 
     selectIcon(null);
+    location.reload();
     }
 
     
