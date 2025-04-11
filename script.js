@@ -21,7 +21,7 @@ function submitReport() {
         return false;
     }
 
-    console.log("Report submitted.");
+    return true;
 }
 
 document.getElementById("confirmButton").addEventListener("click", function() {
@@ -31,16 +31,13 @@ document.getElementById("confirmButton").addEventListener("click", function() {
 
     hideConfirmationPopup(); 
 
-    //Reset form fields in case user wants to make another submission
     document.getElementById("reportForm").reset();
 
-    //Reset the button shadows
     selectIcon(null);
     }
 
     
 });
-
 
 document.getElementById("submitButton").addEventListener("click", function(event) {
     event.preventDefault();
