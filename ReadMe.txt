@@ -8,7 +8,7 @@ This package includes:
       experience with Cypress
 
 Team 121:
-    1. Aminah Reza - 501245715
+    1. Aminah Reza
     2. Helena Kosmajac - 501242672
     3. Lala Hussein - 501106657
     4. Mahwish Ahmad - 501242817
